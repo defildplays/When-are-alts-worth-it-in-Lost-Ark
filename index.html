@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#090d16" name="theme-color"/>
+<meta content="ImDefild Lost Ark alt honing ROI planner 1700–1780: average honing costs, September 2026 raid gold, weekly clear-drop materials, net bonus chest value, and EU price inputs." name="description"/>
+<title>Lost Ark Alt Honing ROI Calculator | ImDefild</title>
+<style>
+:root{--bg:#080b12;--panel:#101621;--panel2:#131b29;--panel3:#0c121d;--border:#253044;--border2:#1a2433;--text:#f5f6fa;--muted:#a2aec1;--soft:#77859e;--gold:#eebd63;--gold2:#ffe0a0;--blue:#77b6fb;--green:#7de0ab;--rose:#f49baa;--purple:#b4a0fc;--radius:16px;--shadow:0 16px 42px rgba(0,0,0,.15)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;font:15px/1.55 Inter,"Segoe UI",Arial,sans-serif;color:var(--text);background:radial-gradient(ellipse 850px 490px at 67% -110px,rgba(66,100,166,.16),transparent 75%),radial-gradient(ellipse 500px 400px at 0 420px,rgba(130,87,39,.09),transparent 75%),var(--bg)}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:3px}::selection{background:#766038;color:#fff}
+.shell{max-width:1370px;margin:auto;padding:0 28px}.site-header{height:73px;position:sticky;z-index:100;top:0;border-bottom:1px solid rgba(155,171,193,.12);background:rgba(8,11,18,.92);backdrop-filter:blur(15px)}.header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;white-space:nowrap}.brand-mark{display:grid;place-items:center;background:linear-gradient(145deg,#eacb8d,#a27637);color:#13151e;width:34px;height:34px;border-radius:10px;font-size:20px;font-weight:1000;box-shadow:0 5px 26px #d5a55c20}.brand-name{font-weight:850;letter-spacing:.01em;font-size:21px}.brand-name span{color:var(--gold)}.nav{display:flex;gap:28px;color:#c0cad8;font-size:13px;font-weight:650}.nav a:hover,.socials a:hover{color:#fff}.socials{display:flex;gap:8px}.socials a{display:flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid #293245;background:#151c27;border-radius:9px;color:#d9e1ea;font-size:12px;font-weight:700}.socials a svg{height:14px;width:14px;fill:currentColor}.socials a.patreon{color:#171920;background:var(--gold);border-color:var(--gold)}
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.65fr);align-items:center;gap:25px;padding:55px 0 36px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:9px}.eyebrow:before{content:"";height:6px;width:6px;background:var(--gold);border-radius:50%}.hero h1{font-size:clamp(34px,5.3vw,62px);line-height:1.05;margin:15px 0 19px;letter-spacing:-.045em;font-weight:850;max-width:750px}.hero h1 em{font-style:normal;color:var(--gold)}.hero p{max-width:760px;color:#b0bbcc;font-size:15px;margin:0;line-height:1.7}.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:23px}.hero-tags span{font-size:11px;letter-spacing:.04em;text-transform:uppercase;font-weight:750;padding:7px 10px;border-radius:7px;border:1px solid #29384c;background:#111a28;color:#adbdcd}.hero-art{min-height:225px;display:flex;flex-direction:column;justify-content:center;padding:28px 28px;border:1px solid #344153;border-radius:20px;background:linear-gradient(145deg,rgba(209,153,70,.09),rgba(71,103,157,.08) 70%),#111823;box-shadow:var(--shadow)}.art-label{font-size:11px;text-transform:uppercase;color:#a5b1c4;letter-spacing:.15em;font-weight:800}.art-prog{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:19px}.art-prog .lv{font-size:33px;font-weight:850;letter-spacing:-.04em;line-height:1}.art-prog .lv.end{color:var(--gold)}.art-prog .arr{font-size:25px;color:#9baabd}.tiny-steps{display:flex;gap:5px;margin:19px 0}.tiny-steps i{height:7px;flex:1;border-radius:10px;background:linear-gradient(90deg,#d3a25b,#f1d49a)}.art-note{color:#aebccf;font-size:12px}
+.section{margin-bottom:32px}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 15px}.section-head h2{font-size:21px;letter-spacing:-.022em;margin:0;font-weight:790}.section-head p{margin:0;color:var(--soft);font-size:12px}.surface{background:linear-gradient(180deg,#131b28,#101620);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}.controls{padding:20px;display:grid;grid-template-columns:1fr 1fr 1.55fr;gap:16px;align-items:end}.field label{display:block;color:#b4c2d4;font-size:11px;text-transform:uppercase;letter-spacing:.11em;margin-bottom:8px;font-weight:800}.field select,.field input[type=number],.input{border:1px solid #36435a;color:#fff;border-radius:9px;background:#0a111c;height:44px;padding:0 12px;min-width:0;width:100%;font-weight:720}.field select{appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="%239ba9bd" stroke-width="2" viewBox="0 0 24 24"%3E%3Cpath d="m7 10 5 5 5-5"/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:calc(100% - 10px) center;padding-right:33px}.field .field-note{font-size:11px;color:#8596ac;margin:7px 0 0}.control-help{display:flex;align-items:center;justify-content:space-between;margin-top:13px;gap:12px;flex-wrap:wrap;color:#9dacc0;font-size:12px}.control-help strong{color:var(--gold2)}.text-btn{background:none;border:0;color:var(--blue);font-size:12px;font-weight:750;padding:0}.text-btn:hover{text-decoration:underline}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.kpi{min-width:0;padding:20px 19px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(160deg,#141c2a,#0f1520)}.kpi .k-label{display:flex;gap:8px;align-items:center;color:#aab7c8;font-size:11px;letter-spacing:.07em;text-transform:uppercase;font-weight:760}.kpi .k-main{font-size:clamp(22px,2.7vw,32px);font-weight:830;margin-top:12px;letter-spacing:-.045em;line-height:1.17}.kpi .k-sub{margin-top:10px;color:#8c9bb0;font-size:12px}.gold{color:var(--gold)}.green{color:var(--green)}.blue{color:var(--blue)}.purple{color:var(--purple)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:13px}.roi{padding:23px;overflow:hidden;position:relative}.roi:before{content:"";position:absolute;height:155px;width:155px;right:-73px;top:-75px;background:rgba(229,186,104,.045);border-radius:50%}.roi.r2:before{background:rgba(115,165,252,.07)}.roi-top{display:flex;gap:12px;align-items:center;margin-bottom:23px}.icon-bg{width:37px;height:37px;border-radius:11px;background:#342b1b;color:var(--gold);display:grid;place-items:center;font-size:17px}.r2 .icon-bg{background:#1e3149;color:var(--blue)}.roi h3{margin:0;font-size:16px;letter-spacing:-.02em}.roi .small{color:#9dabbc;font-size:12px}.roi-body{display:grid;grid-template-columns:1fr 1fr;gap:12px}.roi-big{font-size:clamp(32px,4vw,46px);font-weight:850;letter-spacing:-.05em;line-height:1.1}.roi-caption{color:#9eacbc;font-size:12px;margin-top:6px}.divider-v{border-left:1px solid #29354b;padding-left:17px}.roi-bottom{border-top:1px solid #273246;margin-top:22px;padding-top:14px;color:#a9b7c8;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.roi-bottom b{color:#edf1f8}.note{padding:13px 16px;background:#111b29;border:1px solid #2c3c50;border-left:3px solid #6b9aca;border-radius:9px;font-size:12px;line-height:1.7;color:#aab9cb;margin-top:13px}.note strong{color:#d9e5f2}.note.warn{border-left-color:#e5b977}
+.chart-wrap{padding:21px 21px 17px}.chart-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:15px}.chart-legend{display:flex;align-items:center;gap:14px;color:#a7b5c7;font-size:11px}.chart-legend span{display:flex;align-items:center;gap:6px}.swatch{display:inline-block;width:11px;height:4px;border-radius:8px;background:var(--gold)}.swatch.blue{background:var(--blue)}.chart{width:100%;height:265px;display:block;overflow:hidden}.chart text{fill:#90a0b7;font:11px "Segoe UI",sans-serif}.chart .gridline{stroke:#293547;stroke-width:1;stroke-dasharray:2 7;opacity:.5}.chart-line1{stroke:var(--gold);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}.chart-line2{stroke:var(--blue);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}.graph-note{display:flex;align-items:center;justify-content:space-between;gap:14px;color:#7e90a6;font-size:11px;flex-wrap:wrap}
+.table-wrapper{width:100%;overflow-x:auto}.data-table{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap;font-variant-numeric:tabular-nums}.data-table th{text-align:left;background:#151f2d;color:#aabbd0;text-transform:uppercase;font-size:10px;letter-spacing:.075em;padding:14px 16px;border-bottom:1px solid #2e3b50;font-weight:800}.data-table td{padding:13px 16px;border-bottom:1px solid #233044;font-size:13px;color:#d8e0ec}.data-table tbody tr:last-child td{border-bottom:0}.data-table tbody tr{transition:background .12s}.clicktable tbody tr{cursor:pointer}.clicktable tbody tr:hover{background:#182437}.data-table tbody tr.active{background:#1b2c3b;box-shadow:inset 3px 0 var(--gold)}.data-table tbody tr.mutedrow{opacity:.48}.data-table .cell-range{font-weight:850;font-size:14px;color:#f5f7fa}.data-table .cell-range em{font-style:normal;color:#a1afc1;font-weight:500;font-size:12px}.num{text-align:right!important}.data-table .good{color:var(--green)}.data-table .bad{color:var(--rose)}.data-table .med{color:var(--gold)}.data-table .smalltxt{font-size:11px;color:#7e90a7}.table-footer{padding:14px 16px;border-top:1px solid #253244;font-size:12px;color:#94a5b9}
+.details-grid{display:grid;grid-template-columns:1.22fr .78fr;gap:14px}.details-main{padding:21px;min-width:0}.details-side{padding:21px}.details-sub{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:16px}.details-sub h3{font-size:17px;margin:0}.details-sub small{color:#9aaaBE}.pill{padding:5px 10px;background:#152535;border:1px solid #34495d;color:#b9d8f1;border-radius:7px;font-size:11px;font-weight:700}.cost-lines{display:flex;flex-direction:column;gap:14px}.cost-line-head{display:flex;justify-content:space-between;font-size:12px;color:#afbdd0;gap:8px}.cost-line-head b{color:#f3f5f8}.track{margin-top:6px;background:#202d3d;border-radius:6px;height:9px;overflow:hidden;display:flex}.track div{height:100%;min-width:0}.breakdowns{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:8px}.breakdown{padding:11px 12px;border:1px solid #2d3a4d;background:#0c1420;border-radius:9px}.breakdown .b-top{display:flex;align-items:center;gap:7px;font-size:11px;color:#9daec3}.breakdown strong{display:block;margin-top:5px;font-size:16px;font-variant-numeric:tabular-nums}.breakdown small{display:block;font-size:11px;color:#7d91a9;margin-top:3px}.stacked-row{display:flex;justify-content:space-between;gap:10px;border-top:1px solid #293549;padding:10px 0;font-size:12px;color:#afbdcc}.stacked-row:last-child{padding-bottom:0}.stacked-row b{color:#ebf1f8}.mat-source{font-size:11px;margin-top:15px;color:#8192a8}
+.raids-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.raid-box{padding:20px}.raid-box-title{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #263446;padding-bottom:13px}.raid-box h3{margin:0;font-size:16px}.raid-total{font-size:23px;font-weight:830;letter-spacing:-.04em;color:var(--gold)}.raid-item{display:grid;grid-template-columns:28px 1fr auto;gap:11px;align-items:center;padding:12px 0;border-bottom:1px solid #243040}.raid-item:last-child{border-bottom:0}.raid-rank{height:26px;width:26px;display:grid;place-items:center;border-radius:8px;background:#213045;color:#b4c8e1;font-size:11px;font-weight:800}.raid-name{font-size:12px;font-weight:720}.raid-type{font-size:11px;color:#8597ac}.raid-money{font-size:14px;font-weight:790;text-align:right}.raid-class{font-size:10px;color:#94a7be;text-align:right}
+.settings{display:grid;grid-template-columns:1fr 1fr;gap:15px}.settings-panel{padding:19px}.settings-panel h3{margin:0 0 5px;font-size:15px}.settings-panel p{color:#91a1b6;font-size:11px;margin:0 0 18px}.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.price-grid .field label{font-size:10px;margin-bottom:6px;letter-spacing:.03em;text-transform:none}.price-grid .field input{height:39px}.price-unit{font-size:10px;color:#7e94ac;margin:5px 0 0}.settings-addons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.settings-addons .field input{height:40px}.settings-panel.wide{grid-column:1/-1}.toggle-row{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12px;color:#c6d1df;padding:7px 0}.toggle-row input{accent-color:var(--gold);height:16px;width:16px}.rangebox{display:flex;gap:12px;align-items:center;margin-top:10px}.rangebox input{accent-color:var(--gold);width:100%}.rangebox span{min-width:50px;text-align:right;font-weight:740;color:var(--gold)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.action-btn{padding:10px 13px;border-radius:9px;border:1px solid #3b4c61;background:#1d2a3c;color:#e5edf8;font-size:12px;font-weight:750}.action-btn:hover{background:#263a55}.action-btn.primary{color:#1b1e22;background:var(--gold);border-color:var(--gold)}.audit{border:1px solid #2d3b4b;border-radius:12px;overflow:hidden}.audit .data-table th{font-size:10px}.audit input{width:85px;height:30px;background:#0b1521;border:1px solid #374b60;border-radius:6px;padding:5px 6px;color:#e8f1fa;text-align:right;font-size:12px}.audit small{color:#8295a9}.raid-editor{max-height:410px;overflow:auto}.raid-editor .data-table td,.raid-editor .data-table th{padding:8px 10px}.sources{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 7px}.sources a{display:flex;align-items:center;gap:4px;border:1px solid #324357;background:#152130;padding:7px 10px;border-radius:8px;color:#afd2ff;font-size:11px;font-weight:660}.sources a:hover{background:#22334b;color:#fff}.fineprint{font-size:12px;color:#90a0b2;line-height:1.75}.fineprint b{color:#bdcddd}.footer{border-top:1px solid #283446;margin-top:40px;padding:30px 0 40px;display:flex;justify-content:space-between;gap:12px;color:#8a9ab0;font-size:12px}.footer strong{color:#e9eef5}.hide{display:none!important}
+@media(max-width:1100px){.nav{gap:14px}.socials a span{display:none}.socials a{padding:8px}.kpis{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr 1fr}.details-grid{grid-template-columns:1fr}.settings-addons{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.shell{padding:0 16px}.site-header{height:65px}.brand-name{font-size:19px}.nav{display:none}.socials a:not(.patreon){display:none}.socials a.patreon span{display:inline}.hero{grid-template-columns:1fr;padding:32px 0 23px}.hero-art{min-height:142px;padding:20px}.hero h1{font-size:39px}.hero p{font-size:13px}.art-prog .lv{font-size:26px}.controls{grid-template-columns:1fr 1fr;padding:15px;gap:12px}.controls .field:nth-child(3){grid-column:1/-1}.kpis{gap:9px}.kpi{padding:15px 13px}.kpi .k-main{font-size:23px}.compare,.raids-grid,.settings{grid-template-columns:1fr}.roi{padding:18px}.roi-big{font-size:33px}.roi-body{gap:9px}.settings-addons{grid-template-columns:1fr}.chart-wrap{padding:14px}.chart{height:225px}.details-main,.details-side,.raid-box{padding:15px}.breakdowns{grid-template-columns:1fr 1fr}.section-head{align-items:flex-start;flex-direction:column;gap:3px}.footer{flex-direction:column}.settings-panel.wide{grid-column:auto}}
+
+.material-toggle{margin-top:12px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:15px;background:#131e2a;border:1px solid #334459;border-radius:12px}
+.material-toggle .switch-copy{display:flex;gap:12px;align-items:center;flex:1;min-width:230px}
+.material-toggle .switch-copy strong{display:block;color:#f3f6fb;font-size:13px}
+.material-toggle .switch-copy small{display:block;color:#9db0c5;font-size:11px;line-height:1.55;margin-top:3px}
+.switch{display:inline-flex;align-items:center;cursor:pointer;position:relative;gap:9px;font-size:12px;font-weight:750;color:#b8c7d9}
+.switch input{opacity:0;position:absolute;width:1px;height:1px}
+.switch i{display:inline-block;width:43px;height:25px;border-radius:30px;border:1px solid #40516b;background:#263449;position:relative;transition:background .16s}
+.switch i:before{content:'';position:absolute;left:3px;top:3px;width:17px;height:17px;background:#98a9bb;border-radius:50%;transition:transform .16s,background .16s}
+.switch input:checked+i{background:#665333;border-color:#bb9253}
+.switch input:checked+i:before{transform:translateX(18px);background:var(--gold)}
+.switch input:focus-visible+i{outline:2px solid var(--blue);outline-offset:3px}
+.mat-value-panel{padding:20px}
+.mat-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.mat-summary>div{padding:13px 15px;border:1px solid #2c3e53;border-radius:10px;background:#0e1724;min-width:0}
+.mat-summary span{color:#94aac1;text-transform:uppercase;letter-spacing:.04em;font-size:10px;font-weight:750}
+.mat-summary strong{display:block;font-weight:820;letter-spacing:-.025em;font-size:clamp(19px,2.3vw,25px);margin-top:3px;overflow-wrap:anywhere}
+.mat-value-panel .mat-description{font-size:12px;color:#a0b4c9;margin:13px 0 0;line-height:1.7}
+.mat-detail-line{display:grid;grid-template-columns:1fr auto;gap:15px;font-size:12px;border-top:1px solid #253449;padding:11px 1px;color:#a9bfd1}
+.mat-detail-line:first-child{margin-top:16px}
+.mat-detail-line b{color:#e4ecf6;font-variant-numeric:tabular-nums}
+.mat-editor-table input{max-width:100px;width:94px;height:36px;background:#0c1520;border:1px solid #37485f;border-radius:7px;color:#f3f5fb;text-align:right;padding:0 7px}
+.mat-editor-table td{padding:10px 11px}
+.mat-editor-table td:first-child{font-weight:760;color:#edf3fc}
+.mat-editor-table .mat-tier-help{display:block;color:#8498ae;font-size:10px;font-weight:400}
+.mat-editor-note{font-size:12px;color:#a5b7ca;margin-top:11px;line-height:1.6}
+.mat-editor-note b{color:#e6d5b4}
+.material-off-note{color:#8b9cb1;font-size:11px;margin-top:10px}
+@media(max-width:700px){.material-toggle{align-items:flex-start}.mat-summary{grid-template-columns:1fr}.mat-value-panel{padding:15px}.mat-editor-table{min-width:650px}}
+
+.chart-wrap{overflow:hidden;min-width:0}.chart{display:block;max-width:100%;overflow:hidden}.chart text{font:11px Inter,"Segoe UI",Arial,sans-serif;fill:#a4b5c9}
+.price-sync-grid{display:grid;grid-template-columns:minmax(260px,1.2fr) minmax(185px,.8fr);gap:17px;align-items:end}
+.price-sync-grid .field input{width:100%;background:#0e1825;color:#e8f1ff;border:1px solid #39506a;border-radius:9px;padding:10px;font-size:12px}
+.price-sync-grid .field-note,.price-sync-status{font-size:11px;color:#9bb0c9;line-height:1.5}.price-sync-status{display:block;margin-top:9px}
+.sync-actions .action-btn{width:100%}.sync-help{margin-top:15px;border-top:1px solid #27394e;padding-top:13px;color:#9badc2;font-size:12px}.sync-help summary{font-size:12px;font-weight:750;color:#b9d4f4;cursor:pointer}.sync-help ol{padding-left:21px}.sync-help li{margin:7px 0}.sync-help code{color:#e9c17d}
+@media(max-width:700px){.price-sync-grid{grid-template-columns:1fr}}
+
+/* ImDefild guide header — matches the published Ultimate Bonus Chest Guide */
+.site-header.im-topbar{height:65px;position:sticky;top:0;z-index:110;background:#090c12f5;border-bottom:1px solid #283548;backdrop-filter:none}
+.im-header-inner{height:100%;max-width:1280px;margin:auto;padding:0 26px;display:flex;align-items:center;gap:24px;justify-content:space-between}
+.im-brand{font-size:17px;font-weight:950;letter-spacing:.13em;line-height:1.05;color:#edf2fa;white-space:nowrap}
+.im-brand small{display:block;color:#e8bd73;font-size:8px;letter-spacing:.23em;font-weight:850;margin-top:6px}
+.im-socials{margin-left:auto;display:flex;align-items:center;gap:20px}.im-socials a{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#bdc7d5}.im-socials svg{height:15px;width:15px;fill:currentColor}.im-socials a:hover{color:#e8bd73}
+.chest-controls{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 0 17px;margin-bottom:17px;border-bottom:1px solid #28384b}.chest-controls strong{display:block;font-size:13px;color:#edf2fa}.chest-controls small{display:block;font-size:11px;color:#9eb1c7;margin-top:4px}.chest-controls select{min-width:225px;padding:10px 13px;border:1px solid #3b5068;border-radius:8px;color:#edf2fa;background:#0b1421;font-size:12px;cursor:pointer}
+.mat-clear-chest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:15px 0 18px}.mat-clear-chest-grid>div{border:1px solid #2b3d52;border-radius:8px;background:#0b1420;padding:11px}.mat-clear-chest-grid small{font-size:10px;text-transform:uppercase;color:#96aac3;display:block}.mat-clear-chest-grid b{font-size:17px;font-variant-numeric:tabular-nums;color:#e9edf5}.mat-clear-chest-grid b.goldcost{color:#f6a9af}
+.mat-raid-panels{display:grid;grid-template-columns:1fr 1fr;gap:14px}.mat-raid-panels>div{min-width:0}.mat-raid-panels h3{font-size:13px;margin:0 0 9px}.mat-raids-table{font-size:11px}.mat-raids-table th{font-size:9px;padding:9px}.mat-raids-table td{padding:10px 9px;font-size:11px}.mat-raids-table .mat-raid-name{font-weight:760}.mat-raid-sub{display:block;color:#899db6;font-size:10px}
+@media(max-width:820px){.mat-raid-panels{grid-template-columns:1fr}.mat-raids-table{min-width:520px}}
+@media(max-width:670px){.im-header-inner{padding:0 15px}.im-socials{gap:14px}.im-socials a span{display:none}.im-brand{font-size:16px}.chest-controls{align-items:stretch;flex-direction:column;gap:10px}.chest-controls select{width:100%}.mat-clear-chest-grid{grid-template-columns:1fr}.im-socials svg{height:17px;width:17px}}
+
+/* Narrow ImDefild guide layout with a permanent desktop section navigator. */
+.guide-frame{width:min(100%,1270px);margin:0 auto;padding:0 25px;display:grid;grid-template-columns:208px minmax(0,1fr);gap:34px;align-items:start}
+.guide-content.shell{padding:0;max-width:940px;min-width:0;margin:0}
+.guide-sidebar{min-width:0;position:sticky;top:88px;max-height:calc(100vh - 103px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#29394b transparent;align-self:start;padding:25px 10px 20px 0}
+.guide-sidebar-inner{border-right:1px solid #253143;padding:0 17px 22px 0}
+.side-title{color:#eec37c;font-size:11px;font-weight:900;letter-spacing:.13em;line-height:1.5}
+.side-caption{color:#8a99b0;font-size:11px;margin:3px 0 23px}
+.guide-side-links{display:flex;flex-direction:column;gap:3px}
+.side-group{margin:19px 0 7px 11px;text-transform:uppercase;color:#718199;letter-spacing:.115em;font-size:10px;font-weight:850}
+.side-group:first-child{margin-top:0}
+.side-link{display:flex;gap:11px;align-items:center;padding:10px 11px;border-radius:8px;color:#b1bfd0;font-size:12px;font-weight:690;white-space:nowrap;transition:background .15s,color .15s}
+.side-index{font-size:10px;font-variant-numeric:tabular-nums;color:#697e95;min-width:18px}
+.side-link:hover{background:#172132;color:#fff}
+.side-link.active{background:#25271f;color:#f5cf8a;box-shadow:inset 3px 0 #dfae62}
+.side-link.active .side-index{color:#dfae62}
+.side-foot{margin:27px 6px 0;padding:16px 12px;background:#101824;border:1px solid #26354a;border-radius:10px}
+.side-foot span{display:block;color:#8192a8;letter-spacing:.11em;font-size:9px;font-weight:800}
+.side-foot strong{display:block;color:#f0c77f;margin:5px 0;font-size:21px;font-weight:850;letter-spacing:-.025em}
+.side-foot small{font-size:10px;color:#91a2b7;line-height:1.6;display:block}
+.guide-menu-toggle{display:none;align-items:center;justify-content:center;gap:6px;background:#172334;border:1px solid #314156;border-radius:9px;color:#f2d5a5;padding:9px 11px;font-size:12px;font-weight:750;cursor:pointer}
+.guide-menu-toggle svg{height:17px;width:17px}
+.guide-nav-shade{display:none}
+#overview,#weeklyMaterialSection,#payback,#timelineSection,#ladder,#breakdown,#raids,#settings,#sources{scroll-margin-top:86px}
+[hidden]{display:none!important}
+/* Make the raid reward comparison legible within the article-width column. */
+.mat-raid-panels{grid-template-columns:1fr;gap:17px}
+.mat-raids-table{width:100%;min-width:560px}
+.guide-content .hero{grid-template-columns:minmax(0,1fr) minmax(255px,.72fr);gap:18px;padding-top:37px}
+.guide-content .hero h1{font-size:clamp(31px,3.7vw,48px)}
+.guide-content .hero-art{min-height:193px;padding:24px}
+.guide-content .kpi{padding:17px 13px}
+.guide-content .kpi .k-main{font-size:clamp(22px,2.2vw,30px)}
+.guide-content .details-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+.guide-content .controls{grid-template-columns:1fr 1fr 1.5fr}
+@media(max-width:1199px){
+ .guide-frame{grid-template-columns:194px minmax(0,1fr);gap:23px;padding:0 24px}
+ .guide-content .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .guide-content .controls{grid-template-columns:1fr 1fr}
+ .guide-content .controls .field:nth-child(3){grid-column:1/-1}
+ .guide-content .details-grid{grid-template-columns:1fr}
+}
+@media(max-width:1010px){
+ .guide-frame{display:block;max-width:900px;padding:0 24px}
+ .guide-content.shell{max-width:900px;margin:auto}
+ .guide-menu-toggle{display:flex;margin-left:12px}
+ .guide-sidebar{position:fixed;z-index:121;left:0;top:65px;bottom:0;height:calc(100dvh - 65px);max-height:none;overflow-y:auto;width:min(300px,83vw);padding:23px 18px 30px;background:#0d1420;border-right:1px solid #304158;box-shadow:22px 0 54px rgba(0,0,0,.33);transform:translateX(-105%);transition:transform .2s ease}
+ .guide-sidebar-inner{border:0;padding:0}
+ .guide-nav-shade{position:fixed;inset:65px 0 0;background:rgba(0,0,0,.66);z-index:120}
+ body.nav-open .guide-sidebar{transform:translateX(0)}
+ body.nav-open .guide-nav-shade{display:block}
+ body.nav-open{overflow:hidden}
+ .guide-content .details-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+}
+@media(max-width:750px){
+ .guide-frame{padding:0 16px}
+ .guide-content .hero{grid-template-columns:1fr;gap:14px;padding-top:30px}
+ .guide-content .hero h1{font-size:clamp(32px,9vw,42px)}
+ .guide-content .hero-art{min-height:128px;padding:18px}
+ .guide-content .hero p{font-size:13px}
+ .guide-content .details-grid{grid-template-columns:1fr}
+ .guide-content .controls{grid-template-columns:1fr 1fr}
+ .guide-content .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .guide-content .settings{grid-template-columns:1fr}
+ .guide-content .compare{grid-template-columns:1fr}
+ .guide-menu-toggle{font-size:0;padding:8px;margin-left:4px}
+ .guide-menu-toggle svg{width:19px;height:19px}
+ .im-header-inner{gap:12px}
+ .im-socials{gap:10px}
+}
+@media(max-width:395px){
+ .im-socials{gap:9px}
+ .im-header-inner{padding:0 12px}
+ .im-brand{font-size:15px}
+ .guide-content .kpis{gap:9px}
+ .guide-content .kpi .k-main{font-size:21px}
+ .guide-content .roi-body{grid-template-columns:1fr}
+ .guide-content .divider-v{border:0;border-top:1px solid #29354b;padding:10px 0 0}
+}
+
+</style>
+</head>
+<body>
+<header class="site-header im-topbar"><div class="im-header-inner"><a class="im-brand" href="#top" aria-label="ImDefild Lost Ark Guides">IMDEFILD<small>LOST ARK GUIDES</small></a><div class="im-socials"><a href="https://www.youtube.com/@ImDefild" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 7c-.2-1.4-1-2.4-2.5-2.6a65 65 0 0 0-13 0C4 4.6 3.2 5.6 3 7a33 33 0 0 0 0 10c.2 1.4 1 2.4 2.5 2.6a65 65 0 0 0 13 0c1.5-.2 2.3-1.2 2.5-2.6a33 33 0 0 0 0-10ZM10 16V8l6 4Z"/></svg><span>YouTube</span></a><a href="https://www.twitch.tv/imdefild" target="_blank" rel="noopener" aria-label="Twitch"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 2h18v13l-6 6h-5l-3 3v-3H2V6Zm2 2v14h5v3l3-3h4l2-2V4Zm5 3h2v6h-2Zm5 0h2v6h-2Z"/></svg><span>Twitch</span></a><a href="https://discord.gg/imdefild" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 5a17 17 0 0 0-4.3-1.3l-.5 1A16 16 0 0 0 9.8 4l-.5-1A17 17 0 0 0 5 5C2.5 8.6 2 12 2.3 15.5A17 17 0 0 0 7.5 18l1.1-1.6-1.7-.8.4-.3c3.4 1.6 7.6 1.6 11 0l.4.3-1.7.8L18 18a17 17 0 0 0 5.2-2.5C23.7 11.4 22.3 8 19 5zM9.2 13.5c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6zm5.6 0c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6z"/></svg><span>Discord</span></a><a href="https://www.patreon.com/ImDefild" target="_blank" rel="noopener" aria-label="Patreon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h4v18H3Z"/><circle cx="16" cy="9" r="6"/></svg><span>Patreon</span></a></div><button class="guide-menu-toggle" id="guideMenuToggle" type="button" aria-controls="guideSidebar" aria-expanded="false" aria-label="Open guide navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>Sections</span></button></div></header>
+<div class="guide-nav-shade" id="guideNavShade" aria-hidden="true"></div>
+<div class="guide-frame">
+<aside class="guide-sidebar" id="guideSidebar" aria-label="Guide sections">
+ <div class="guide-sidebar-inner">
+  <div class="side-title">ALT INVESTMENT GUIDE</div>
+  <p class="side-caption">Navigate the calculator</p>
+  <nav class="guide-side-links" aria-label="On this page">
+   <div class="side-group">Calculator</div>
+   <a class="side-link active" href="#overview"><span class="side-index">01</span> Overview</a>
+   <a class="side-link" href="#weeklyMaterialSection" id="sideMaterials" hidden><span class="side-index">02</span> Weekly materials</a>
+   <a class="side-link" href="#payback"><span class="side-index">03</span> Payback time</a>
+   <a class="side-link" href="#timelineSection"><span class="side-index">04</span> Break-even chart</a>
+   <div class="side-group">Honing &amp; raids</div>
+   <a class="side-link" href="#ladder"><span class="side-index">05</span> +10 milestones</a>
+   <a class="side-link" href="#breakdown"><span class="side-index">06</span> Material costs</a>
+   <a class="side-link" href="#raids"><span class="side-index">07</span> Raid income</a>
+   <div class="side-group">References</div>
+   <a class="side-link" href="#settings"><span class="side-index">08</span> Market prices</a>
+   <a class="side-link" href="#sources"><span class="side-index">09</span> Notes &amp; sources</a>
+  </nav>
+  <div class="side-foot"><span>SELECTED INVESTMENT</span><strong id="sideRange">1700 → 1780</strong><small>Three weekly gold raids · chest costs included when enabled</small></div>
+ </div>
+</aside>
+<main class="shell guide-content" id="top">
+<section class="hero"><div><div class="eyebrow">Lost Ark • Alt progression planner • 2026</div><h1>Will your alt ever <em>pay for itself?</em></h1><p>Compare average honing investment against the extra raid gold an upgraded alt earns. View raw gold only, market-bought materials, detailed resource requirements, and real break-even weeks for every 10 item levels from 1700 to 1780.</p><div class="hero-tags"><span>1700 – 1780</span><span>Expected honing taps + pity</span><span>Raid gold ROI</span><span>Editable EU prices</span></div></div><div class="hero-art"><div class="art-label">Endgame progression / milestones</div><div class="art-prog"><span class="lv">1700</span><span class="arr">→</span><span class="lv end">1780</span></div><div aria-hidden="true" class="tiny-steps"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="art-note">8 brackets · 6 gear pieces · 3 weekly gold raids</div></div></section>
+<section class="section" id="overview"><div class="section-head"><h2>Set your investment</h2><p>Updates instantly as you change the settings</p></div><div class="surface controls"><div class="field"><label for="start">Current item level</label><select id="start"></select></div><div class="field"><label for="target">Target item level</label><select id="target"></select></div><div class="field"><label for="goldType">Which gold counts as income?</label><select id="goldType"><option value="roster">Tradable + roster-bound</option><option value="all">All gold, including character-bound</option><option value="tradable">Tradable gold only</option></select></div></div><div class="control-help"><span><strong>Payback = upgrade cost ÷ additional weekly value</strong> compared with leaving the alt at its current level.</span><a class="text-btn" href="#sources">How the calculations work ↓</a></div>
+<div class="material-toggle"><div class="switch-copy"><span aria-hidden="true" class="icon-bg">◆</span><span><strong>Include extra weekly honing materials in payback</strong><small>Add the clear rewards of the best three weekly raids, plus net materials from any bonus chests you buy. Bound materials are savings, not roster gold.</small></span></div><label class="switch"><input id="matEnabled" type="checkbox"/><i aria-hidden="true"></i><span id="matSwitchText">Off · raid gold only</span></label></div></section>
+<section class="section"><div class="kpis"><div class="kpi"><div class="k-label">◈ Raw honing gold</div><div class="k-main gold" id="kGold">—</div><div class="k-sub">NPC honing taps, excluding nonstandard progression costs</div></div><div class="kpi"><div class="k-label">◇ Full market investment</div><div class="k-main" id="kFull">—</div><div class="k-sub">Raw gold + all honing materials</div></div><div class="kpi"><div class="k-label">↗ Extra gold / week</div><div class="k-main green" id="kUplift">—</div><div class="k-sub" id="kIncomeSub">Against your current raid income</div></div><div class="kpi"><div class="k-label">▥ Weekly gold at target</div><div class="k-main blue" id="kWeekly">—</div><div class="k-sub" id="kWeeklySub">Best 3 eligible raids</div></div></div></section>
+<section class="section" hidden id="weeklyMaterialSection"><div class="section-head"><h2>Weekly raid material value</h2><p>Verified clear rewards + optional net bonus-chest value</p></div><div class="surface mat-value-panel"><div class="chest-controls"><div><strong>Bonus chests (View More)</strong><small>All bonus chests are selected by default. Their full purchase gold cost is deducted from the material value.</small></div><select id="chestMode" aria-label="Bonus chest purchase strategy"><option value="all">Buy all bonus chests (default)</option><option value="profitable">Buy profitable chests only</option><option value="none">Do not buy bonus chests</option></select></div><div class="mat-summary"><div><span>Materials at current / week</span><strong id="matBefore">—</strong></div><div><span>Materials at target / week</span><strong id="matAfter">—</strong></div><div><span>Extra net value / week</span><strong class="green" id="matGain">—</strong></div></div><div class="mat-clear-chest-grid" id="matTotals"></div><div class="mat-raid-panels"><div><h3 id="matRaidsBeforeTitle">Before · weekly raids</h3><div class="table-wrapper"><table class="data-table mat-raids-table"><thead><tr><th>Raid / difficulty</th><th class="num">Clear mats</th><th class="num">Chest mats</th><th class="num">Chest cost</th><th class="num">Net materials</th></tr></thead><tbody id="matRaidsBefore"></tbody></table></div></div><div><h3 id="matRaidsAfterTitle">After · weekly raids</h3><div class="table-wrapper"><table class="data-table mat-raids-table"><thead><tr><th>Raid / difficulty</th><th class="num">Clear mats</th><th class="num">Chest mats</th><th class="num">Chest cost</th><th class="num">Net materials</th></tr></thead><tbody id="matRaidsAfter"></tbody></table></div></div></div><p class="mat-description">Only the <b>increase</b> over the selected starting raids counts toward payback. Material value includes red stones, blue stones, leapstones and Destiny Shards from the <b>three selected weekly gold raids</b>; bonus chest gold is subtracted. Older T4 stones and leapstones are valued at a 5:1 conversion to Upper T4 when comparing an alt at 1730+. Other raid drops, first clears, daily content, roster-wide activities and auction loot have no estimated gold value. Bound materials save future spending but cannot be sold for roster gold. <a href="https://defildplays.github.io/Ultimate-Bonus-Chest-Guide/" target="_blank" rel="noopener">Full bonus chest guide ↗</a></p></div></section>
+<section class="section" id="payback"><div class="section-head"><h2>How many weeks until it pays back?</h2><p>Incremental ROI — not total raid income</p></div><div class="compare"><div class="surface roi"><div class="roi-top"><div class="icon-bg">◈</div><div><h3>Bound materials · Gold only</h3><div class="small">You already own every required material</div></div></div><div class="roi-body"><div><div class="roi-big gold" id="roiGold">—</div><div class="roi-caption">Weeks to break even</div></div><div class="divider-v"><div class="roi-big" id="roiGoldYears">—</div><div class="roi-caption">Approx. years / payoff</div></div></div><div class="roi-bottom"><span>Investment <b id="roiGoldCost">—</b></span><span>Gross income payback: <b id="roiGoldGross">—</b></span></div></div><div class="surface roi r2"><div class="roi-top"><div class="icon-bg">◇</div><div><h3>Buy every material</h3><div class="small">Full market cost of all required resources</div></div></div><div class="roi-body"><div><div class="roi-big blue" id="roiFull">—</div><div class="roi-caption">Weeks to break even</div></div><div class="divider-v"><div class="roi-big" id="roiFullYears">—</div><div class="roi-caption">Approx. years / payoff</div></div></div><div class="roi-bottom"><span>Investment <b id="roiFullCost">—</b></span><span>Gross income payback: <b id="roiFullGross">—</b></span></div></div></div><div class="note" id="roiNotice"></div></section>
+<section class="section" id="timelineSection"><div class="section-head"><h2>Break-even timeline</h2><p>Net advantage over staying at your current item level</p></div><div class="surface chart-wrap"><div class="chart-top"><div class="chart-legend"><span><i class="swatch"></i> Gold-only investment</span><span><i class="swatch blue"></i> Buy all materials</span></div><span class="pill" id="graphHorizon">Up to 2 years</span></div><svg aria-label="Payback investment over time" class="chart" id="timeline" preserveaspectratio="none" role="img" viewbox="0 0 900 265"></svg><div class="graph-note"><span><span id="graphSourceNote">Week 0 starts negative: the gold spent to hone. Each week adds only the extra raid gold.</span></span><span>Assumes consistent market prices and raid rewards</span></div></div></section>
+<section class="section" id="ladder"><div class="section-head"><h2>Every +10 item level milestone</h2><p>Select any row for the full material and honing breakdown</p></div><div class="surface"><div class="table-wrapper"><table class="data-table clicktable"><thead><tr><th>Upgrade</th><th class="num">Raw gold</th><th class="num">Buy all mats</th><th class="num">Weekly gold gained</th><th class="num" hidden="" id="matLadderHeader">Extra mats / week</th><th class="num">Gold-only ROI</th><th class="num">Full-market ROI</th><th class="num">Cumulative full cost</th></tr></thead><tbody id="ladderBody"></tbody></table></div><div class="table-footer">Rows show each bracket against the previous item level, not against 1700. The cumulative column is counted from your selected starting level. “No ROI” means the upgrade unlocks no extra weekly value under the current settings. Materials are economic value, not spendable gold.</div></div></section>
+<section class="section" id="breakdown"><div class="section-head"><h2>Where does the gold actually go?</h2><p id="detailTitle">Selected bracket</p></div><div class="details-grid"><div class="surface details-main"><div class="details-sub"><h3 id="detailHeadline">Cost breakdown</h3><span class="pill" id="detailPath">—</span></div><div class="cost-lines" id="costBars"></div><div class="breakdowns" id="materialBreakdowns"></div><div class="mat-source" id="matSource"></div></div><div class="surface details-side"><div class="details-sub"><h3>Honing taps &amp; gear XP</h3><span class="pill">1 weapon + 5 armor</span></div><div id="stepsBreakdown"></div></div></div></section>
+<section class="section" id="raids"><div class="section-head"><h2>Best weekly raid lineup</h2><p>One difficulty per raid · top 3 by selected gold value · materials follow the same lineup</p></div><div class="raids-grid"><div class="surface raid-box"><div class="raid-box-title"><h3 id="fromRaidTitle">Current level raids</h3><span class="raid-total" id="fromRaidGold">—</span></div><div id="fromRaids"></div></div><div class="surface raid-box"><div class="raid-box-title"><h3 id="toRaidTitle">Target level raids</h3><span class="raid-total" id="toRaidGold">—</span></div><div id="toRaids"></div></div></div><div class="note"><strong>Gold types matter.</strong> Raid gold follows the September 2026 adjustments. Tradable gold can be used freely. Roster-bound gold is usable for eligible roster spending but cannot simply be traded or withdrawn. Horizon Cathedral gold is character-bound: it only appears in the “All gold” scenario. This comparison assumes the alt fills an available gold-earning character slot and clears all three chosen raids.</div></section>
+<section class="section" id="settings"><div class="section-head"><h2>Market prices &amp; assumptions</h2><p>Prices are editable, and saved in this browser</p></div><div class="settings"><div class="surface settings-panel"><h3>Tier 4 — before 1730 transfer</h3><p>Destined Hellfire · Advanced Honing +21–40, then regular +19/+20</p><div class="price-grid" id="priceOld"></div><div class="field" style="margin-top:14px;max-width:350px"><label for="advTaps">Advanced Honing: expected paid taps per piece (+10 levels)</label><input id="advTaps" type="number" min="1" max="150" step="0.01" value="43.72"/><div class="field-note">Modeled x2 Grace, no scrolls/breaths (43.72). Adjust using your own Honing Forecast if using books/scrolls.</div></div></div><div class="surface settings-panel"><h3>Tier 4 Upper — 1730 onward</h3><p>Destined Tremor · +12 through +21, plus crafting and Breakthrough caveats</p><div class="price-grid" id="priceUpper"></div></div><div class="surface settings-panel wide" id="priceSyncPanel">
+<h3>EU market price updates</h3>
+<p>Use the material prices from <a href="https://loa-buddy.pages.dev/market" rel="noopener" style="color:#a5d1ff;text-decoration:underline" target="_blank">LOA Buddy Market</a>. Prices above are editable and saved in this browser. Default prices are a <b>dated EU benchmark (22 October 2026)</b>, not live quotes.</p>
+<div class="price-sync-grid">
+<div class="field"><label for="priceProxy">Optional live price proxy URL</label><input autocomplete="off" id="priceProxy" placeholder="https://your-worker.workers.dev/v1/prices/latest" type="url"/><div class="field-note">LOA Buddy’s API blocks cross-site browser requests. A small Cloudflare Worker is needed for automatic live prices. The download ZIP includes the optional worker.js.</div></div>
+<div class="sync-actions"><button class="action-btn primary" id="syncPrices" type="button">↻ Sync EU prices</button><span class="price-sync-status" id="priceStatus" role="status">Manual EU price inputs · not live-synced</span></div>
+</div>
+<details class="sync-help"><summary>How to enable live market syncing</summary><ol><li>Deploy the included <code>worker.js</code> as a free Cloudflare Worker.</li><li>Paste its address above, ending in <code>/v1/prices/latest</code>.</li><li>Click <b>Sync EU prices</b> to request current EU Central prices. The tool updates only items actually returned by the feed.</li></ol><p>Stone listings are converted from prices per 100 to prices per 1. Shard pouch pricing remains manual because a directly comparable single-shard price cannot be assumed. The feed’s update frequency and availability are controlled by its provider, not this calculator.</p></details>
+<div class="actions"><button class="action-btn" id="copySummary" type="button">Copy calculation</button><button class="action-btn" id="reset" type="button">Reset defaults</button></div>
+</div><div class="surface settings-panel wide"><h3>Raid gold editor</h3><p>Update rewards when a patch changes them. Change the gold split separately to retain the bound/tradable distinction. The highest available difficulty of each raid is chosen automatically.</p><details><summary style="cursor:pointer;font-weight:750;color:#b9d4f4;padding-bottom:9px">Show all editable raid rewards</summary><div class="audit raid-editor"><table class="data-table"><thead><tr><th>Raid / difficulty</th><th class="num">Item lv.</th><th class="num">Tradable</th><th class="num">Roster-bound</th><th class="num">Character-bound</th></tr></thead><tbody id="raidEditorBody"></tbody></table></div></details></div></div></section>
+<section class="section" id="sources"><div class="section-head"><h2>Calculation notes &amp; sources</h2><p>What is and isn't included</p></div><div class="surface" style="padding:22px"><div class="fineprint"><p><b>Honing math:</b> 1700→1710 and 1710→1720 each use 10 Advanced Honing levels per piece, modeled with the updated Ancestor’s Grace rate. From 1720 onward, each +10 bracket requires two regular honing successes per piece. Regular honing success consumes a stochastic number of attempts. After every failed attempt, the success chance gains 10% of the original chance up to double the base; failed attempts grant Artisan’s Energy equal to the attempt’s chance × 0.465. The tap after reaching 100% Artisan’s Energy is guaranteed. Expected taps are calculated by summing the survival probability of reaching every tap. Regular honing Gear XP (shards and silver) is charged once per successful honing level; it is not charged per attempt. No books, breaths, additional honing-support materials, special honing currency, or event bonuses are applied. Advanced Honing is included at 1700–1720; this is not the same as using Special Honing tokens.</p><p><b>Important 1780 limitation:</b> upper gear +21 requires Breakthrough after +20. The extra one-time materials/fees for each of the six gear pieces could not be independently confirmed; 1770→1780 and cumulative totals reaching 1780 are <b>underestimates</b> until you add that cost. One-time Serca Agony Thorn farming is also unpriced.</p><p><b>Market snapshot:</b> EU Central prices from the October 22, 2026 reward-sheet benchmark, not up-to-the-second LOA Buddy data. Confirm or sync prices before spending. Gold values and bonus chest costs come from the October 2026 Western rewards sheet; market values move continually.</p><p><b>Gear path assumption:</b> the 1700 start assumes regular Hellfire honing +18 and Advanced Honing +20. The normal alt route shown is Advanced Honing +21–30 (1700→1710), Advanced Honing +31–40 (1710→1720), regular honing +19/+20 (1720→1730), then crafted Destined Tremor gear (+11) honing to +21 (1780). All six gear pieces are honed evenly. This route assumes the alt already has Advanced Honing +20 at 1700. Advanced Honing expected paid taps model x2 Ancestor’s Grace and exclude rate-up scrolls and breaths; change the estimate in Market Prices if you know your own forecast. Each +10 range is a standalone step in this exact route.</p><p><b>Progression not priced automatically:</b> remaining Ancient gear crafting items/Agony Thorns, pre-1700 Advanced Honing 1–20 if incomplete, +20 Breakthrough materials/costs, rate-up scrolls and breaths, other honing bonuses, bus fees, gems, accessories, elixirs, Ark Grid, Vambrace, auction income, daily tradeable materials, and the market value of silver are excluded. Silver is displayed as a resource, not converted to gold. Partial upgrade distributions and existing Artisan are not modeled: start at a full 10-item-level breakpoint with six equal pieces.</p><p><b>Incremental ROI definition:</b> with material valuation off, payback weeks = honing investment ÷ (weekly raid gold at target − weekly raid gold at start). With materials on, add the difference in weekly ordinary raid-drop value plus purchased bonus-chest value <i>minus chest gold costs</i> at the target and starting levels. This measures the <i>incremental</i> return from upgrading an existing alt. “Gross income payback” divides by total target raid earnings (plus target materials if enabled) and is shown only for comparison; it overstates the financial return to honing. A no-change weekly value means <i>no measurable incremental ROI</i>. Optional material income is economic value usable for that alt, not money you can necessarily transfer to the roster. Values are estimates rather than guarantees.</p><p><b>Weekly raid materials and purchased chests:</b> source-backed clear and bonus-chest quantities for each of the best three eligible gold raids replace the previous illustrative item-level material profiles. At 1710 the lineup includes newly unlocked Serca and Final Day, at 1720 upgraded Act 4 and Cathedral are available, and later raid difficulties unlock at 1730, 1740, 1750, 1770 and 1780. The model values the raid's ordinary honing materials and, if enabled, the materials inside each purchased gate chest, then <b>deducts every purchased chest's gold cost</b>. “Buy profitable chests” only buys gate chests whose priced honing mats exceed their cost. This is net replacement value, not liquid gold; a bound material is useful only if the alt can spend it. Older T4 stones and leapstones are converted at 5:1 for valuation on an alt at 1730+; shards retain their own price. Fused leapstones, Ark Grid, Vambrace, first clears, daily content, and event rewards are excluded. Gold differences and material differences are each evaluated against the alt at its starting item level.</p><p><b>Price policy:</b> default prices match the 22 October 2026 EU benchmark in the linked ImDefild Bonus Chest Guide, not current live quotes; live syncing requires a same-origin or CORS-enabled proxy. An optional Cloudflare Worker is included for that purpose. Before publishing a recommendation, update every material from your own EU region market, including Destiny Shards (which are not directly tradeable; the entered price is a pouch-equivalent valuation). Buying all materials means paying their replacement cost, not that every input can always be bought as an individual market item. Gold-only assumes all mats are already owned/bound; it is still an economic resource expenditure.</p></div><div class="sources"><a href="https://honing-forecast.pages.dev/Fanofleps/calc" rel="noreferrer" target="_blank">Honing Forecast ↗</a><a href="https://maxroll.gg/lost-ark/upgrade-calculator" rel="noreferrer" target="_blank">Maxroll Upgrade Calculator ↗</a><a href="https://loa-buddy.pages.dev/market" rel="noreferrer" target="_blank">LOA Buddy Market ↗</a><a href="https://lostark.fandom.com/wiki/Honing" rel="noreferrer" target="_blank">Honing rates / gear costs ↗</a><a href="https://lostark.wiki/tools/gear-honing" rel="noreferrer" target="_blank">Honing database ↗</a><a href="https://www.playlostark.com/en-us/game/releases/dimensions-unbound" rel="noreferrer" target="_blank">September 2026 gold update ↗</a><a href="https://defildplays.github.io/Ultimate-Bonus-Chest-Guide/" rel="noreferrer" target="_blank">ImDefild bonus chest dataset ↗</a><a href="https://docs.google.com/spreadsheets/d/1YQpWt8iOK6yO5_7r3rvZZKkoRy8Z0aEAPHy11gYZZQ8/edit" rel="noreferrer" target="_blank">Western raid rewards sheet ↗</a><a href="https://www.lostmokokos.com/raids" rel="noreferrer" target="_blank">Raid reward references ↗</a><a href="https://www.playlostark.com/en-us/news/articles/lost-ark-2026-roadmap-part-4" rel="noreferrer" target="_blank">Belgardin thresholds ↗</a><a href="https://www.playlostark.com/en-us/game/releases/the-shadows-rise" rel="noreferrer" target="_blank">1730 Chaos Rift materials ↗</a><a href="https://www.playlostark.com/en-us/game/releases/the-twilight-isle" rel="noreferrer" target="_blank">1750 daily-content upgrades ↗</a><a href="https://www.playlostark.com/en-gb/game/releases/arbiter-of-death" rel="noreferrer" target="_blank">1770 daily-content upgrades ↗</a></div></div></section>
+<footer class="footer"><span><strong>ImDefild</strong> • Lost Ark alt-investment guide • Updated November 2026</span><span>Unofficial fan-made calculator · Check your in-game honing interface and EU market before spending.</span></footer>
+</main>
+</div>
+<script>
+'use strict';
+// Static price snapshot, never represented as an automated live market feed.
+const PRICE_DEFAULT={oldRed:3.99,oldBlue:.76,oldLeap:10,oldFusion:103,oldShard:222/3000,upperRed:20.48,upperBlue:4.96,upperLeap:17,upperFusion:142,upperShard:222/3000};
+const PRICE_META={oldRed:['Destiny Destruction Stone','gold per 1 stone'],oldBlue:['Destiny Guardian Stone','gold per 1 stone'],oldLeap:['Destiny Leapstone','gold per 1'],oldFusion:['Abidos Fusion Material','gold per 1'],oldShard:['Destiny Shards','gold per 1 shard (pouch value)'],upperRed:['Crystallized Destruction Stone','gold per 1 stone'],upperBlue:['Crystallized Guardian Stone','gold per 1 stone'],upperLeap:['Great Destiny Leapstone','gold per 1'],upperFusion:['Superior Abidos Fusion','gold per 1'],upperShard:['Destiny Shards','gold per 1 shard (pouch value)']};
+// [gear ilvl, base rate %, weapon red / armor blue, per attempt shards, leaps, fusion, silver, gold, XP shards, XP silver].
+const OLD_W=[
+[1665,4,1700,8800,30,18,55000,1944,43000,1075000],
+[1670,4,1950,9400,33,18,55000,2136,49000,1225000],
+[1675,3,2220,12000,36,25,65000,2352,66000,1650000],
+[1680,3,2450,12900,39,25,65000,2576,75000,1875000],
+[1685,3,2700,13700,42,25,65000,3510,85000,1955000],
+[1690,1.5,2950,16000,45,35,90000,3830,106000,2120000]];
+const OLD_A=[
+[1665,4,1020,5280,18,11,33000,1168,25000,625000],
+[1670,4,1170,5640,20,11,33000,1280,29000,725000],
+[1675,3,1320,7200,22,15,39000,1408,39000,975000],
+[1680,3,1470,7740,23,15,39000,1544,45000,1125000],
+[1685,3,1620,8220,25,15,39000,2110,51000,1173000],
+[1690,1.5,1770,9600,27,21,54000,2300,63000,1260000]];
+const UPPER_W=[
+[1735,5,1700,15890,17,18,22000,4050,57000,570000],
+[1740,5,1890,17660,19,21,22000,4500,63000,630000],
+[1745,4,2080,19420,21,23,22000,4950,70000,700000],
+[1750,4,2270,21190,23,25,22000,5400,76000,760000],
+[1755,4,2460,22960,25,27,22000,5850,83000,830000],
+[1760,3,2690,25120,28,29,26000,6400,90000,900000],
+[1765,3,2900,27080,30,32,26000,6900,98000,980000],
+[1770,3,3110,29040,32,34,26000,7400,105000,1050000],
+[1775,1.5,3340,31200,34,37,36000,7950,112000,1120000],
+[1780,1.5,3570,33360,37,39,36000,8500,120000,1200000]];
+const UPPER_A=[
+[1735,5,930,9570,11,11,13200,2450,34000,340000],
+[1740,5,1030,10540,12,12,13200,2700,38000,380000],
+[1745,4,1120,11520,13,13,13200,2950,41000,410000],
+[1750,4,1240,12690,14,15,13200,3250,46000,460000],
+[1755,4,1330,13670,15,16,13200,3500,49000,490000],
+[1760,3,1450,14840,17,17,15600,3800,54000,540000],
+[1765,3,1560,16010,18,19,15600,4100,58000,580000],
+[1770,3,1700,17380,20,20,15600,4450,63000,630000],
+[1775,1.5,1810,18550,21,22,21600,4750,67000,670000],
+[1780,1.5,1950,19920,23,23,21600,5100,72000,720000]];
+const DEFAULT_RAIDS=[
+{id:'c1',name:'Horizon Cathedral',diff:'Level 1',lv:1700,family:'cathedral',trade:0,roster:0,char:30000},
+{id:'c2',name:'Horizon Cathedral',diff:'Level 2',lv:1720,family:'cathedral',trade:0,roster:0,char:40000},
+{id:'c3',name:'Horizon Cathedral',diff:'Level 3',lv:1750,family:'cathedral',trade:0,roster:0,char:50000},
+{id:'a4n',name:'Act 4 · Armoche',diff:'Normal',lv:1700,family:'armoche',trade:13500,roster:13500,char:0},
+{id:'a4h',name:'Act 4 · Armoche',diff:'Hard',lv:1720,family:'armoche',trade:38000,roster:0,char:0},
+{id:'a3h',name:'Act 3 · Mordum',diff:'Hard',lv:1700,family:'mordum',trade:13500,roster:13500,char:0},
+{id:'a2h',name:'Act 2 · Brelshaza',diff:'Hard',lv:1690,family:'brel',trade:11500,roster:11500,char:0},
+{id:'a1h',name:'Act 1 · Aegir',diff:'Hard',lv:1680,family:'aegir',trade:9000,roster:9000,char:0},
+{id:'sn',name:'Shadow Raid · Serca',diff:'Normal',lv:1710,family:'serca',trade:16000,roster:16000,char:0},
+{id:'sh',name:'Shadow Raid · Serca',diff:'Hard',lv:1730,family:'serca',trade:44000,roster:0,char:0},
+{id:'sx',name:'Shadow Raid · Serca',diff:'Nightmare',lv:1740,family:'serca',trade:54000,roster:0,char:0},
+{id:'fn',name:'Denouement · Final Day',diff:'Normal',lv:1710,family:'finalday',trade:16000,roster:16000,char:0},
+{id:'fh',name:'Denouement · Final Day',diff:'Hard',lv:1730,family:'finalday',trade:48000,roster:0,char:0},
+{id:'bn',name:'Shadow Raid · Belgardin',diff:'Normal',lv:1750,family:'belgardin',trade:50000,roster:0,char:0},
+{id:'bh',name:'Shadow Raid · Belgardin',diff:'Hard',lv:1770,family:'belgardin',trade:62000,roster:0,char:0},
+{id:'bx',name:'Shadow Raid · Belgardin',diff:'Nightmare',lv:1780,family:'belgardin',trade:75000,roster:0,char:0}
+];
+// Western October 2026 raid clear/chest quantities; main material/fused/core/bracelet drops are not valued.
+// clear: [destruction,guardian,shards,leapstones]; gates: [goldCost,destruction,guardian,shards,leapstones].
+// Acts 1–3 from Tylobic Western rewards sheet; Act 4 onwards same quantities as ImDefild's Ultimate Bonus Chest Guide.
+const RAID_MATERIALS={
+ c1:{tier:'old',clear:[1780,3560,12200,21],gates:[[4320,1400,2800,11880,44],[5280,2400,4800,20160,78]]},
+ c2:{tier:'old',clear:[2130,4260,15400,27],gates:[[5120,1680,3360,14250,53],[7680,2880,5760,24200,94]]},
+ c3:{tier:'upper',clear:[905,1810,20100,20],gates:[[6400,860,1720,19000,36],[9600,1430,2860,32200,60]]},
+ a4n:{tier:'old',clear:[1780,3560,12200,21],gates:[[3200,1400,2800,11880,44],[5440,2400,4800,20160,78]]},
+ a4h:{tier:'old',clear:[2130,4260,15400,27],gates:[[4320,1680,3360,14250,53],[7840,2880,5760,24200,94]]},
+ a3h:{tier:'old',clear:[1600,3200,13000,20],gates:[[1650,600,1200,5000,23],[2640,830,1660,7200,27],[4060,1460,2920,11760,45]]},
+ a2h:{tier:'old',clear:[1340,2680,10600,15],gates:[[2400,720,1440,6000,30],[5100,1320,2640,10590,50]]},
+ a1h:{tier:'old',clear:[1240,2480,9600,13],gates:[[1820,610,1220,5280,18],[4150,940,1880,8930,31]]},
+ sn:{tier:'old',clear:[1980,3960,14100,27],gates:[[4480,1610,3220,13650,50],[6720,2480,4960,20880,82]]},
+ sh:{tier:'upper',clear:[860,1720,18400,17],gates:[[5600,750,1500,17500,30],[8480,1130,2260,26820,45]]},
+ sx:{tier:'upper',clear:[905,1810,20100,20],gates:[[6720,860,1720,19000,36],[10560,1430,2860,32200,60]]},
+ fn:{tier:'old',clear:[1980,3960,14100,27],gates:[[3520,1610,3220,13650,50],[6720,2760,5520,23200,90]]},
+ fh:{tier:'upper',clear:[860,1720,18400,17],gates:[[5120,750,1500,17500,30],[10240,1320,2640,29800,50]]},
+ bn:{tier:'upper',clear:[905,1810,20100,20],gates:[[6400,860,1720,19000,36],[9600,1430,2860,32200,60]]},
+ bh:{tier:'upper',clear:[1090,2180,24120,25],gates:[[8000,1130,2260,22800,43],[11840,1720,3440,38640,72]]},
+ bx:{tier:'upper',clear:[1255,2510,27730,30],gates:[[9600,1300,2600,26220,49],[14400,1980,3960,44440,83]]}
+};
+const state={priceProxy:'',priceSyncAt:null,advTaps:43.723293896180294,matEnabled:false,chestMode:'all',start:1700,target:1780,goldType:'roster',selected:1700,prices:{...PRICE_DEFAULT},raids:structuredClone(DEFAULT_RAIDS)};
+const $=id=>document.getElementById(id),nf=new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
+const fmt=n=>nf.format(Math.round(n||0)),money=n=>fmt(n)+' G';
+const compact=n=>{if(!Number.isFinite(n))return '∞';if(Math.abs(n)>=1000000)return (n/1e6).toFixed(2).replace(/0$/,'').replace(/\.$/,'')+'m';if(Math.abs(n)>=1000)return (n/1000).toFixed(1).replace(/\.0$/,'')+'k';return fmt(n)};
+const fmtWeeks=n=>!Number.isFinite(n)?'No ROI':n<0?'No ROI':n>99999?'99,999+':(Math.ceil(n)).toLocaleString('en-US');
+const readNum=(v,def=0)=>{let n=Number(v);return Number.isFinite(n)?Math.max(0,n):def};
+function expectedTaps(baseRate){let probAlive=1,artisan=0,expected=0,attempts=0,pity=0;for(let fails=0;fails<2000;fails++){const chance=artisan>=100?1:Math.min(1,baseRate/100*(1+Math.min(10,fails)*.1));expected+=probAlive;attempts++;probAlive*=1-chance;if(artisan>=100||probAlive<1e-12){pity=attempts;break;}artisan+=chance*100*.465;}return {expected,worst:pity};}
+function bracketRows(){return Array.from({length:8},(_,i)=>({from:1700+10*i,to:1710+10*i}));}
+function rowData(lv,kind){if(lv<=1730){const i=Math.round((lv-1705)/5);return (kind==='w'?OLD_W:OLD_A)[i]}const i=Math.round((lv-1735)/5);return (kind==='w'?UPPER_W:UPPER_A)[i]}
+function materialPrefix(lv){return lv<=1730?'old':'upper'}
+function calcCostRow(lv,kind,count,prices){const data=rowData(lv,kind);if(!data)throw Error('Missing row '+lv);const [gLv,rate,stones,attemptShards,leap,fusion,silver,gold,xpShards,xpSilver]=data;const tap=expectedTaps(rate),n=tap.expected*count,prefix=materialPrefix(lv);const redKey=prefix+'Red',blueKey=prefix+'Blue',leapKey=prefix+'Leap',fusionKey=prefix+'Fusion',shardKey=prefix+'Shard';let cats={};function add(key,amt){cats[key]=(cats[key]||0)+amt;}add(kind==='w'?redKey:blueKey,stones*n);add(leapKey,leap*n);add(fusionKey,fusion*n);add(shardKey,attemptShards*n+xpShards*count);add('silver',silver*n+xpSilver*count);const raw=gold*n;return {lv,kind,count,rate,tap,raw,cats,prefix};}
+// Tier 4 Advanced Honing, 21–30 & 31–40: per charged tap from the Advanced Honing table;
+// tempering costs are paid once per piece; ancestor's grace / x2 gain simulated by a
+// dynamic-programming expected-value model, no rate-up books, scrolls or breaths.
+const ADV_COSTS={
+ 1700:{w:[1200,11500,25,28,55000,3000,115000,2300000],a:[1000,7000,18,17,44000,2000,70000,1850000]},
+ 1710:{w:[1400,13000,32,30,70000,4000,230000,2530000],a:[1200,8000,23,19,56000,2400,140000,2035000]}
+};
+function advancedCostRow(from,kind,count){
+ const [stones,shards,leaps,fusion,silver,gold,tempShards,tempSilver]=ADV_COSTS[from][kind];
+ const taps=state.advTaps;
+ const add={};const put=(k,v)=>{add[k]=(add[k]||0)+v};
+ put(kind==='w'?'oldRed':'oldBlue',stones*taps*count);
+ put('oldLeap',leaps*taps*count);put('oldFusion',fusion*taps*count);
+ put('oldShard',(shards*taps+tempShards)*count);
+ put('silver',(silver*taps+tempSilver)*count);
+ return {lv:from+10,kind,count,rate:null,tap:{expected:taps,worst:null},raw:gold*taps*count,cats:add,prefix:'old',advanced:true,tempering:{shards:tempShards*count,silver:tempSilver*count}};
+}
+function calcBracket(from){
+ const pieces=[];let raw=0,cats={};
+ const levels=(from===1700||from===1710)?[from+10]:[from+5,from+10];
+ for(const lv of levels)for(const kind of ['w','a']){
+  const r=(from===1700||from===1710)?advancedCostRow(from,kind,kind==='w'?1:5):calcCostRow(lv,kind,kind==='w'?1:5,state.prices);
+  pieces.push(r);raw+=r.raw;
+  for(const [key,qty] of Object.entries(r.cats))cats[key]=(cats[key]||0)+qty;
+ }
+ const extra=from===1730?21000:0; // Destined Tremor craft: weapon 6k + 5 armor x 3k, Agony Thorns excluded.
+ raw+=extra;
+ const materialCost=Object.entries(cats).reduce((sum,[key,qty])=>sum+(state.prices[key]||0)*qty,0);
+ return {from,to:from+10,raw,mat:materialCost,full:raw+materialCost,extra,cats,pieces};
+}
+function goldVal(r){if(state.goldType==='tradable')return r.trade;if(state.goldType==='all')return r.trade+r.roster+r.char;return r.trade+r.roster;}
+function bestRaids(lvl){const all=state.raids.filter(r=>r.lv<=lvl);const chosen=[];const groups=[...new Set(all.map(r=>r.family))];for(const family of groups){const group=all.filter(r=>r.family===family);group.sort((a,b)=>b.lv-a.lv);chosen.push(group[0]);}chosen.sort((a,b)=>goldVal(b)-goldVal(a)||b.lv-a.lv);const top=chosen.filter(r=>goldVal(r)>0).slice(0,3);return {top,total:top.reduce((s,r)=>s+goldVal(r),0) ,trade:top.reduce((s,r)=>s+r.trade,0),roster:top.reduce((s,r)=>s+r.roster,0),char:top.reduce((s,r)=>s+r.char,0)};}
+function roi(cost,income){return income>0?cost/income:Infinity;}
+function fullCost(from,to,costs){const out={raw:0,mat:0,full:0,cats:{},extra:0};for(let lv=from;lv<to;lv+=10){const c=costs[lv];out.raw+=c.raw;out.mat+=c.mat;out.full+=c.full;out.extra+=c.extra;for(const [k,q] of Object.entries(c.cats))out.cats[k]=(out.cats[k]||0)+q;}return out;}
+// Materials from the same chosen three gold raids as the gold forecast.
+function rewardPrices(tier,lvl){
+ const convert=tier==='old'&&lvl>=1730;
+ const prefix=tier==='upper'||convert?'upper':'old';
+ const factor=convert ? 0.2 : 1; // five earlier stones/leapstones convert to one upper material
+ return [state.prices[prefix+'Red']*factor,state.prices[prefix+'Blue']*factor,state.prices[tier==='upper'?'upperShard':'oldShard'],state.prices[prefix+'Leap']*factor];
+}
+function materialWorth(values,tier,lvl){const p=rewardPrices(tier,lvl);return values.reduce((sum,q,i)=>sum+q*p[i],0)}
+function materialProfile(lvl){
+ const chosen=bestRaids(lvl).top;
+ const rows=chosen.map(raid=>{
+  const data=RAID_MATERIALS[raid.id];
+  if(!data)return {raid,clear:0,chestValue:0,chestCost:0,chestNet:0,total:0,gates:[],chestsBought:0};
+  const clear=materialWorth(data.clear,data.tier,lvl);
+  const gates=data.gates.map((gate,i)=>{
+   const v=materialWorth(gate.slice(1),data.tier,lvl),cost=gate[0];
+   const bought=state.chestMode==='all'||(state.chestMode==='profitable'&&v>cost);
+   return {gate:i+1,value:v,cost,bought};
+  });
+  const chestValue=gates.reduce((sum,g)=>sum+(g.bought?g.value:0),0);
+  const chestCost=gates.reduce((sum,g)=>sum+(g.bought?g.cost:0),0);
+  return {raid,clear,chestValue,chestCost,chestNet:chestValue-chestCost,total:clear+chestValue-chestCost,gates,chestsBought:gates.filter(g=>g.bought).length};
+ });
+ return {rows,clear:rows.reduce((s,r)=>s+r.clear,0),chestValue:rows.reduce((s,r)=>s+r.chestValue,0),chestCost:rows.reduce((s,r)=>s+r.chestCost,0),total:rows.reduce((s,r)=>s+r.total,0)};
+}
+function materialGain(from,to){return state.matEnabled?materialProfile(to).total-materialProfile(from).total:0;}
+function addValue(from,to){return bestRaids(to).total-bestRaids(from).total+materialGain(from,to);}
+function raidMaterialRows(profile){return profile.rows.map(r=>`<tr><td class="mat-raid-name">${r.raid.name}<span class="mat-raid-sub">${r.raid.diff} · ${r.chestsBought}/${r.gates.length} chests</span></td><td class="num">${compact(r.clear)} G</td><td class="num">${compact(r.chestValue)} G</td><td class="num" style="color:#eeb1b8">${r.chestCost?'-'+compact(r.chestCost):'—'} G</td><td class="num" style="color:${r.total>=0?'#83e4b2':'#f5a8b6'}">${compact(r.total)} G</td></tr>`).join('');}
+function renderMaterialSummary(){
+ $('weeklyMaterialSection').hidden=!state.matEnabled;$('sideMaterials').hidden=!state.matEnabled;
+ $('matLadderHeader').hidden=!state.matEnabled;
+ $('matEnabled').checked=state.matEnabled;
+ $('matSwitchText').textContent=state.matEnabled?'On · raid gold + net materials':'Off · raid gold only';
+ $('chestMode').value=state.chestMode;
+ if(!state.matEnabled)return;
+ const before=materialProfile(state.start),after=materialProfile(state.target),gain=after.total-before.total;
+ $('matBefore').textContent=money(before.total);$('matAfter').textContent=money(after.total);$('matGain').textContent=(gain>0?'+':'')+money(gain);
+ const clearDelta=after.clear-before.clear,chestDelta=after.chestValue-before.chestValue,costDelta=after.chestCost-before.chestCost;
+ $('matTotals').innerHTML=`<div><small>Additional clear-drop value</small><b>${clearDelta>=0?'+':''}${money(clearDelta)}</b></div><div><small>Extra bonus-chest material value</small><b>${chestDelta>=0?'+':''}${money(chestDelta)}</b></div><div><small>Extra chest purchase gold</small><b class="goldcost">${costDelta>0?'-':costDelta<0?'+':''}${money(Math.abs(costDelta))}</b></div>`;
+ $('matRaidsBeforeTitle').textContent=state.start+' ilvl · selected raids';
+ $('matRaidsAfterTitle').textContent=state.target+' ilvl · selected raids';
+ $('matRaidsBefore').innerHTML=raidMaterialRows(before);
+ $('matRaidsAfter').innerHTML=raidMaterialRows(after);
+}
+
+// Live market API is same one used by LOA Buddy. It requires a user-owned CORS worker on other domains.
+const EU_FEED_ITEMS={
+ oldRed:{slugs:['destiny-destruction-stone'],bundle:100},
+ oldBlue:{slugs:['destiny-guardian-stone'],bundle:100},
+ oldLeap:{slugs:['destiny-leapstone'],bundle:1},
+ oldFusion:{slugs:['abidos-fusion-material'],bundle:1},
+ upperRed:{slugs:['destiny-crystallized-destruction-stone','crystallized-destruction-stone'],bundle:100},
+ upperBlue:{slugs:['destiny-crystallized-guardian-stone','crystallized-guardian-stone'],bundle:100},
+ upperLeap:{slugs:['great-destiny-leapstone'],bundle:1},
+ upperFusion:{slugs:['superior-abidos-fusion-material'],bundle:1}
+};
+function updatePriceStatus(textOverride){
+ let str=textOverride;
+ if(!str){str=state.priceSyncAt?('EU live-feed sync: '+new Date(state.priceSyncAt).toLocaleString('en-GB')+' · shard prices manual'):'22 October 2026 EU benchmark · not live';}
+ $('priceStatus').textContent=str;
+}
+async function syncMarketPrices(){
+ const url=$('priceProxy').value.trim();
+ state.priceProxy=url;save();
+ if(!/^https:\/\/[^\s]+$/i.test(url)){updatePriceStatus('Enter a valid HTTPS worker proxy URL first (see instructions below).');return;}
+ const button=$('syncPrices');button.disabled=true;button.textContent='Syncing…';updatePriceStatus('Checking current EU Central feed…');
+ try{
+  const itemSlugs=[...new Set(Object.values(EU_FEED_ITEMS).flatMap(x=>x.slugs))];
+  const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({region_slug:'euc',item_slugs:itemSlugs}),cache:'no-store',signal:AbortSignal.timeout(14000)});
+  if(!r.ok)throw Error('HTTP '+r.status);
+  const result=await r.json();
+  const rows=Array.isArray(result)?result:Array.isArray(result.data)?result.data:[];
+  const bySlug=new Map(rows.map(x=>[String(x.item_slug||x.slug||'').toLowerCase(),x]));
+  let matched=0;const changed=[];
+  for(const [key,item] of Object.entries(EU_FEED_ITEMS)){
+   const found=item.slugs.map(slug=>bySlug.get(slug)).find(x=>x&&Number(x.price)>0);
+   if(!found)continue;
+   const price=Number(found.price)/item.bundle;
+   if(!Number.isFinite(price)||price<=0)continue;
+   state.prices[key]=price;$(key).value=price;matched++;changed.push(key);
+  }
+  if(!matched)throw Error('Feed returned no matching honing materials; check item slugs and your worker configuration.');
+  state.priceSyncAt=new Date().toISOString();render();updatePriceStatus('Synced '+matched+'/8 EU items at '+new Date().toLocaleTimeString('en-GB')+' · shards/manual unchanged');
+ }catch(err){updatePriceStatus('Unable to sync live prices ('+(err&&err.message?err.message:'network/CORS error')+'). Current prices kept.');}
+ finally{button.disabled=false;button.textContent='↻ Sync EU prices';save();}
+}
+
+function save(){try{localStorage.setItem('imdefild_alt_roi_v5',JSON.stringify({...state}));}catch(e){}}
+function load(){try{const savedV5=localStorage.getItem('imdefild_alt_roi_v5');const savedV4=localStorage.getItem('imdefild_alt_roi_v4');const old=JSON.parse(savedV5||savedV4||localStorage.getItem('imdefild_alt_roi_v3')||'null');if(!old||typeof old!=='object')return;for(const k of ['start','target','goldType','selected','priceProxy','priceSyncAt'])if(old[k]!==undefined)state[k]=old[k];if(typeof old.matEnabled==='boolean')state.matEnabled=old.matEnabled;if(['profitable','none','all'].includes(old.chestMode))state.chestMode=(!savedV4&&!savedV5&&old.chestMode==='profitable')?'all':old.chestMode;if(old.prices)for(const k of Object.keys(PRICE_DEFAULT))if(old.prices[k]!==undefined){const before=readNum(old.prices[k]);const stale={oldShard:205/3000,upperRed:20.8,upperBlue:5.05,upperLeap:20,upperFusion:130,upperShard:205/3000};state.prices[k]=!savedV5&&k in stale&&Math.abs(before-stale[k])<0.0000001?PRICE_DEFAULT[k]:before;}if(Number.isFinite(Number(old.advTaps))&&Number(old.advTaps)>0)state.advTaps=Number(old.advTaps);if(Array.isArray(old.raids)){const byId=new Map(old.raids.map(r=>[r.id,r]));state.raids=DEFAULT_RAIDS.map(d=>{const v=byId.get(d.id);return v?{...d,trade:readNum(v.trade),roster:readNum(v.roster),char:readNum(v.char)}:{...d}});}}catch(e){}}
+function setup(){load();for(let lvl=1700;lvl<=1780;lvl+=10){for(const id of ['start','target']){const opt=document.createElement('option');opt.value=lvl;opt.textContent=lvl+' ilvl';$(id).append(opt)}}for(const [id,where] of [['old','priceOld'],['upper','priceUpper']]){for(const key of Object.keys(PRICE_DEFAULT).filter(x=>x.startsWith(id))){const [label,unit]=PRICE_META[key];const div=document.createElement('div');div.className='field';div.innerHTML='<label for="'+key+'">'+label+'</label><input type="number" min="0" step="any" id="'+key+'" aria-label="'+label+' price"><div class="price-unit">'+unit+'</div>';
+$(where).append(div);$(key).value=state.prices[key];$(key).addEventListener('input',e=>{state.prices[key]=readNum(e.target.value);state.priceSyncAt=null;render();updatePriceStatus();});}}
+$('advTaps').value=state.advTaps.toFixed(2);$('advTaps').addEventListener('input',e=>{if(Number(e.target.value)>0){state.advTaps=Math.max(1,Math.min(150,Number(e.target.value)));render();}});$('start').value=state.start;$('target').value=state.target;$('goldType').value=state.goldType;$('matEnabled').checked=state.matEnabled;$('priceProxy').value=state.priceProxy||'';updatePriceStatus();for(const id of ['start','target'])$(id).addEventListener('change',e=>{state[id]=Number(e.target.value);if(state.start>state.target){state[e.target.id==='start'?'target':'start']=state[e.target.id==='start'?'start':'target'];$('start').value=state.start;$('target').value=state.target;}if(state.start===state.target){if(id==='start'){state.target=Math.min(1780,state.start+10);if(state.start===1780){state.start=1770;}}else{state.start=Math.max(1700,state.target-10);if(state.target===1700)state.target=1710;} $('start').value=state.start;$('target').value=state.target;}state.selected=Math.max(state.start,Math.min(state.target-10,state.selected));render();});$('goldType').addEventListener('change',e=>{state.goldType=e.target.value;render()});$('priceProxy').addEventListener('change',e=>{state.priceProxy=e.target.value.trim();save();updatePriceStatus()});$('syncPrices').addEventListener('click',syncMarketPrices);$('matEnabled').addEventListener('change',e=>{state.matEnabled=e.target.checked;render();});$('chestMode').addEventListener('change',e=>{state.chestMode=e.target.value;render();});
+$('copySummary').addEventListener('click',copySummary);$('reset').addEventListener('click',()=>{try{localStorage.removeItem('imdefild_alt_roi_v3');localStorage.removeItem('imdefild_alt_roi_v4');localStorage.removeItem('imdefild_alt_roi_v5');}catch(e){}window.location.reload()});renderRaidEditor();state.start=Math.min(1770,Math.max(1700,Number(state.start)||1700));state.target=Math.min(1780,Math.max(state.start+10,Number(state.target)||1780));$('start').value=state.start;$('target').value=state.target;render();if(state.priceProxy)syncMarketPrices();}
+
+function setupSideNavigation(){
+ const toggle=$('guideMenuToggle'),shade=$('guideNavShade'),links=[...document.querySelectorAll('.side-link')];
+ const close=()=>{document.body.classList.remove('nav-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open guide navigation');};
+ const open=()=>{document.body.classList.add('nav-open');toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Close guide navigation');};
+ toggle.addEventListener('click',()=>document.body.classList.contains('nav-open')?close():open());
+ shade.addEventListener('click',close);
+ document.addEventListener('keydown',event=>{if(event.key==='Escape')close();});
+ links.forEach(link=>link.addEventListener('click',()=>{close();links.forEach(a=>a.classList.remove('active'));link.classList.add('active');}));
+ if('IntersectionObserver' in window){
+  const obs=new IntersectionObserver(entries=>{
+   const visible=entries.filter(entry=>entry.isIntersecting&&!entry.target.hidden).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+   if(!visible.length)return;
+   const id='#'+visible[0].target.id;
+   links.forEach(link=>link.classList.toggle('active',link.getAttribute('href')===id));
+  },{rootMargin:'-83px 0px -62% 0px',threshold:0});
+  for(const link of links){const id=link.getAttribute('href');const target=document.querySelector(id);if(target)obs.observe(target);}
+ }
+}
+
+function renderRaidEditor(){const tbody=$('raidEditorBody');tbody.innerHTML=state.raids.map(r=>`<tr><td>${r.name} <small>${r.diff}</small></td><td class="num">${r.lv}</td>${['trade','roster','char'].map(k=>`<td class="num"><input type="number" min="0" step="100" aria-label="${r.name} ${r.diff} ${k}" data-raid="${r.id}" data-key="${k}" value="${r[k]}"></td>`).join('')}</tr>`).join('');tbody.addEventListener('input',e=>{const el=e.target;if(!el.dataset.raid)return;const raid=state.raids.find(r=>r.id===el.dataset.raid);if(!raid)return;raid[el.dataset.key]=readNum(el.value);render();});}
+function render(){
+ const costs={};for(let l=1700;l<1780;l+=10)costs[l]=calcBracket(l);
+ const {start,target}=state,cost=fullCost(start,target,costs),ra=bestRaids(start),rb=bestRaids(target);$('sideRange').textContent=start+' → '+target;
+ const goldGain=rb.total-ra.total,matExtra=materialGain(start,target),gain=goldGain+matExtra;
+ const weeks1=roi(cost.raw,gain),weeks2=roi(cost.full,gain);
+ $('kGold').textContent=compact(cost.raw)+' G';$('kFull').textContent=compact(cost.full)+' G';
+ $('kUplift').textContent=(goldGain>0?'+':'')+compact(goldGain)+' G';$('kWeekly').textContent=compact(rb.total)+' G';
+ $('kIncomeSub').textContent='vs. '+compact(ra.total)+' G / week at '+start;$('kWeeklySub').textContent='Best 3 eligible weekly raids';
+ $('roiGold').textContent=fmtWeeks(weeks1);$('roiFull').textContent=fmtWeeks(weeks2);
+ $('roiGoldYears').textContent=Number.isFinite(weeks1)?(weeks1/52).toFixed(1)+' yr':'—';
+ $('roiFullYears').textContent=Number.isFinite(weeks2)?(weeks2/52).toFixed(1)+' yr':'—';
+ $('roiGoldCost').textContent=money(cost.raw);$('roiFullCost').textContent=money(cost.full);
+ const gross=rb.total+(state.matEnabled?materialProfile(target).total:0);
+ $('roiGoldGross').textContent=gross?fmtWeeks(roi(cost.raw,gross))+' weeks':'—';
+ $('roiFullGross').textContent=gross?fmtWeeks(roi(cost.full,gross))+' weeks':'—';
+ $('roiNotice').className='note'+(gain<=0?' warn':'');
+ $('roiNotice').innerHTML=gain<=0?'<strong>No extra weekly value unlocked.</strong> With the current raid and material settings, upgrading does not improve weekly earnings compared with staying at '+start+'. There is no incremental payback.':`<strong>Additional weekly value: ${money(gain)}.</strong> Extra raid gold: ${money(goldGain)}${state.matEnabled?` · net extra material value (chest costs deducted): ${money(matExtra)}`:''}. The alt already earned ${money(ra.total)} raid gold at ${start}; that baseline cannot be used to justify the upgrade. ${state.matEnabled?'Bound material value represents potential future honing savings, not spendable gold.':''} ${state.goldType==='all'?'Character-bound Cathedral gold is included and can be spent only by that character.':''}`;
+ if(target>=1780){$('roiNotice').innerHTML+='<br><strong>1780 caution:</strong> Tremor +21 requires a one-time Breakthrough on all six pieces. Its additional materials/fees are not included because a current itemized cost could not be verified; displayed 1780 costs and payback are optimistic lower bounds.';}
+ $('graphSourceNote').textContent=state.matEnabled?'Week 0 starts with the honing cost. Each week adds extra raid gold plus the net raid material value including any bonus chest purchase costs.':'Week 0 starts with the honing cost. Each week adds only the extra raid gold.';
+ renderMaterialSummary();renderGraph(cost.raw,cost.full,gain,weeks2);renderLadder(costs);renderDetails(costs);renderRaids(ra,rb);save();
+}
+function renderGraph(c1,c2,gain,w2){
+ const svg=$('timeline'),W=900,H=265,L=23,R=27,T=24,B=37;
+ const horizon=Math.max(52,Math.min(520,Math.ceil(Math.max(Number.isFinite(w2)?w2:104,52)/26)*26));
+ $('graphHorizon').textContent=horizon<=104?'Up to '+(horizon/52).toFixed(1)+' years':'Up to '+fmt(horizon)+' weeks';
+ const end1=horizon*gain-c1,end2=horizon*gain-c2;
+ let low=Math.min(0,-c1,-c2,end1,end2),high=Math.max(0,-c1,-c2,end1,end2);
+ const spread=Math.max(high-low,1);low-=spread*.07;high+=spread*.08;
+ const x=w=>L+w/horizon*(W-L-R),y=g=>T+(high-g)/(high-low)*(H-T-B);
+ let html=`<defs><clipPath id="chartClip"><rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}"/></clipPath></defs>`;
+ for(let i=1;i<=3;i++){const py=T+i*(H-T-B)/4;html+=`<line class="gridline" x1="${L}" y1="${py}" x2="${W-R}" y2="${py}" stroke-dasharray="3 6"/>`;}
+ if(low<0&&high>0){const zero=y(0);html+=`<line x1="${L}" y1="${zero}" x2="${W-R}" y2="${zero}" stroke="#6e8196" stroke-width="1.5"/><text x="${W-R-4}" y="${Math.max(T+12,zero-7)}" fill="#9baec3" text-anchor="end" font-size="11">Break even · 0 G</text>`;}
+ for(let i=0;i<=4;i++){const wk=Math.round(horizon*i/4);html+=`<text x="${x(wk)}" text-anchor="${i===0?'start':i===4?'end':'middle'}" y="${H-10}" fill="#a6bad1" font-size="11">Week ${wk}</text>`;}
+ const line=(cost,className)=>`<path class="${className}" d="M${x(0).toFixed(2)} ${y(-cost).toFixed(2)} L${x(horizon).toFixed(2)} ${y(horizon*gain-cost).toFixed(2)}"/>`;
+ html+='<g clip-path="url(#chartClip)">'+line(c2,'chart-line2')+line(c1,'chart-line1')+'</g>';
+ for(const [cost,color] of [[c1,'#eebd63'],[c2,'#77b6fb']]){const wk=roi(cost,gain);if(Number.isFinite(wk)&&wk>=0&&wk<=horizon){html+=`<circle cx="${x(wk)}" cy="${y(0)}" r="5" fill="${color}" stroke="#0f1724" stroke-width="2"/>`;}}
+ svg.innerHTML=html;
+}
+function renderLadder(costs){let cumulative=0;let html='';for(const b of bracketRows()){const c=costs[b.from];const before=bestRaids(b.from).total,after=bestRaids(b.to).total,diff=after-before;const matExtra=materialGain(b.from,b.to),totalGain=diff+matExtra;const rawR=roi(c.raw,totalGain),fullR=roi(c.full,totalGain);if(b.from>=state.start&&b.to<=state.target)cumulative+=c.full;const active=b.from===state.selected;html+=`<tr class="${active?'active ':''}${b.from<state.start||b.to>state.target?'mutedrow':''}" data-bracket="${b.from}" tabindex="0" role="button" aria-label="Show ${b.from} to ${b.to} details"><td class="cell-range">${b.from} <em>→</em> ${b.to}${b.from===1700?'<div class="smalltxt">Advanced Honing +21–30</div>':b.from===1710?'<div class="smalltxt">Advanced Honing +31–40</div>':b.from===1720?'<div class="smalltxt">Regular +19 / +20</div>':b.from===1730?'<div class="smalltxt">Tremor gear crafting</div>':b.from===1770?'<div class="smalltxt">Breakthrough not priced</div>':''}</td><td class="num">${compact(c.raw)} G</td><td class="num">${compact(c.full)} G</td><td class="num ${diff>0?'good':'bad'}">${diff>0?'+':''}${compact(diff)} G</td>${state.matEnabled?`<td class="num ${matExtra>=0?'good':'bad'}">${matExtra>0?'+':''}${compact(matExtra)} G</td>`:''}<td class="num ${Number.isFinite(rawR)?'med':'bad'}">${fmtWeeks(rawR)}${Number.isFinite(rawR)?' w':''}</td><td class="num ${Number.isFinite(fullR)?'':'bad'}">${fmtWeeks(fullR)}${Number.isFinite(fullR)?' w':''}</td><td class="num">${b.from<state.start||b.to>state.target?'—':compact(cumulative)+' G'}</td></tr>`;}$('ladderBody').innerHTML=html;document.querySelectorAll('[data-bracket]').forEach(el=>{const act=()=>{state.selected=Number(el.dataset.bracket);renderDetails(costs);document.querySelectorAll('[data-bracket]').forEach(x=>x.classList.toggle('active',Number(x.dataset.bracket)===state.selected));document.getElementById('breakdown').scrollIntoView({behavior:'smooth',block:'start'});save()};el.addEventListener('click',act);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act()}})});}
+const DISPLAY_ORDER=['oldRed','oldBlue','oldLeap','oldFusion','upperRed','upperBlue','upperLeap','upperFusion','oldShard','upperShard'];
+const COLORS={gold:'#eebd63',oldRed:'#e38d93',oldBlue:'#76b7f3',oldLeap:'#a7a4ee',oldFusion:'#70d5b5',oldShard:'#c8a1ef',upperRed:'#cf7f8c',upperBlue:'#75bdff',upperLeap:'#b3a2ff',upperFusion:'#75d1a1',upperShard:'#dab1e0'};
+function renderDetails(costs){
+ const lv=state.selected,c=costs[lv]||costs[1700];
+ $('detailTitle').textContent=c.from+' → '+c.to+' item level';
+ $('detailHeadline').textContent=money(c.full)+' total market value';
+ $('detailPath').textContent=c.from<=1710?'Advanced Honing +'+(c.from===1700?'21–30':'31–40'):c.from===1720?'Hellfire +19/+20':'Tremor +'+(12+(c.from-1730)/5)+' / +'+(13+(c.from-1730)/5);
+ const part=[{label:'Raw honing gold',gold:c.raw-c.extra,key:'gold'},...(c.extra?[{label:'Tremor gear crafting (6 pieces)',gold:c.extra,key:'gold'}]:[]),...DISPLAY_ORDER.filter(k=>c.cats[k]).map(k=>({label:PRICE_META[k][0],gold:c.cats[k]*state.prices[k],key:k}))].sort((a,b)=>b.gold-a.gold);
+ const max=Math.max(...part.map(x=>x.gold),1);
+ $('costBars').innerHTML=part.map(p=>`<div><div class="cost-line-head"><span>${p.label}</span><b>${money(p.gold)}</b></div><div class="track"><div style="width:${Math.max(.1,p.gold/max*100)}%;background:${COLORS[p.key]}"></div></div></div>`).join('');
+ $('materialBreakdowns').innerHTML=DISPLAY_ORDER.filter(k=>c.cats[k]>0).map(k=>`<div class="breakdown"><div class="b-top"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${COLORS[k]}"></span>${PRICE_META[k][0]}</div><strong>${fmt(c.cats[k])}</strong><small>${money(c.cats[k]*state.prices[k])} equivalent</small></div>`).join('')+`<div class="breakdown"><div class="b-top">Silver (not priced in gold)</div><strong>${compact(c.cats.silver)}</strong><small>${fmt(c.cats.silver)} silver</small></div>`;
+ $('matSource').textContent=c.from<=1710?'Advanced Honing: modeled paid taps with x2 Grace; no books/breaths. One-time tempering shards and silver included; unpriced raid items excluded.':c.from===1730?'Average Tremor honing, plus 21,000 G for six newly crafted Tremor pieces. Agony Thorns unpriced.':c.from===1770?'Average +20/+21 honing only. Breakthrough materials/fees NOT priced: costs are lower bounds.':'Average regular honing includes expected failed taps and one-time gear XP. No books/breaths or event bonuses.';
+ let out='';
+ if(c.from<=1710){
+  out+=`<div class="stacked-row"><div><b>Advanced Honing +${c.from===1700?'21–30':'31–40'}</b><div style="font-size:11px;color:#8296ad">Two Ancestor’s Grace orbs per tap · tempering included</div></div><div style="text-align:right"><b>${state.advTaps.toFixed(2)} paid taps</b><div style="font-size:11px;color:#8296ad">per piece, modeled</div></div></div>`;
+  for(const x of c.pieces)out+=`<div class="stacked-row"><span>${x.kind==='w'?'1× Weapon':'5× Armor'} <span style="color:#8294a9">${x.count} piece${x.count===1?'':'s'}</span></span><b>${money(x.raw)}</b></div>`;
+ }else{
+  for(const lev of [lv+5,lv+10]){
+   const p=c.pieces.filter(x=>x.lv===lev),display=lev<=1730?'+'+(14+(lev-1700)/5):'+'+(11+(lev-1730)/5);
+   out+=`<div class="stacked-row"><div><b style="font-size:14px">${display} <span style="color:#9daec4;font-weight:500;font-size:11px">(${lev} effective ilvl)</span></b><div style="font-size:11px;color:#8195ab">Base rate ${p[0].rate}% · guaranteed by tap ${p[0].tap.worst}</div></div><div style="text-align:right"><b>${p[0].tap.expected.toFixed(2)} taps</b><div style="font-size:11px;color:#8296ad">per piece</div></div></div>`;
+   for(const x of p)out+=`<div class="stacked-row"><span>${x.kind==='w'?'1× Weapon':'5× Armor'} <span style="color:#8294a9">${x.count} piece${x.count===1?'':'s'}</span></span><b>${money(x.raw)}</b></div>`;
+  }
+ }
+ if(c.extra)out+=`<div class="stacked-row"><span>6× Destined Tremor crafting</span><b>${money(c.extra)}</b></div>`;
+ if(c.from===1770)out+=`<div class="stacked-row"><span style="color:#ffb4ba">Breakthrough for six pieces (not verified or priced)</span><b>Excluded</b></div>`;
+ out+=`<div class="stacked-row"><span><b>Total tapping + crafting gold</b></span><b class="gold">${money(c.raw)}</b></div><div class="stacked-row"><span>Market-priced materials</span><b>${money(c.mat)}</b></div><div class="stacked-row"><span><b>Average full spend${c.from===1770?' (lower bound)':''}</b></span><b>${money(c.full)}</b></div>`;
+ $('stepsBreakdown').innerHTML=out;
+}
+function raidsHtml(ra){return ra.top.map((r,i)=>{const kind=r.char?'Character-bound':r.roster?'Mixed / roster-bound':'Tradable';return `<div class="raid-item"><div class="raid-rank">${i+1}</div><div><div class="raid-name">${r.name}</div><div class="raid-type">${r.diff} · ${r.lv} ilvl</div></div><div><div class="raid-money">${money(goldVal(r))}</div><div class="raid-class">${kind}</div></div></div>`}).join('')||'<p style="font-size:12px;color:#aab9c9">No qualifying raids under this gold filter.</p>'}
+function renderRaids(ra,rb){$('fromRaidTitle').textContent=state.start+' ilvl · Before honing';$('toRaidTitle').textContent=state.target+' ilvl · After honing';$('fromRaidGold').textContent=compact(ra.total)+' G';$('toRaidGold').textContent=compact(rb.total)+' G';$('fromRaids').innerHTML=raidsHtml(ra);$('toRaids').innerHTML=raidsHtml(rb);}
+async function copySummary(){
+ const costs={};for(let l=1700;l<1780;l+=10)costs[l]=calcBracket(l);
+ const c=fullCost(state.start,state.target,costs),goldExtra=bestRaids(state.target).total-bestRaids(state.start).total,matExtra=materialGain(state.start,state.target),gain=goldExtra+matExtra;
+ const content=`ImDefild • Lost Ark Alt Honing ROI\n${state.start} → ${state.target}\nRaw honing gold: ${money(c.raw)}\nMaterials to buy: ${money(c.mat)}\nFull market cost: ${money(c.full)}\nExtra weekly raid gold: ${money(goldExtra)}\nNet extra weekly raid material value: ${state.matEnabled?money(matExtra):'Off'}\nWeekly payback value: ${money(gain)}\nPayback owned mats: ${fmtWeeks(roi(c.raw,gain))} weeks\nPayback buy all: ${fmtWeeks(roi(c.full,gain))} weeks\nRaid clear/chest quantities from Tylobic EU/W. Bonus chest strategy: ${state.chestMode}. Chest purchase costs deducted from mat value.\nGold filter: ${state.goldType}\n${state.target>=1780?"CAUTION: Breakthrough fee/materials not included; 1780 results are lower bounds.\n":""}Advanced Honing per piece: ${state.advTaps.toFixed(2)} expected paid taps; no rate-up scrolls/breaths.\n`;
+ try{await navigator.clipboard.writeText(content);}
+ catch(e){const textarea=document.createElement('textarea');textarea.value=content;document.body.append(textarea);textarea.select();document.execCommand('copy');textarea.remove();}
+ $('copySummary').textContent='Copied!';setTimeout(()=>$('copySummary').textContent='Copy calculation',1500);
+}
+
+setupSideNavigation();
+setup();
+</script>
+</body>
+</html>
